@@ -2,11 +2,11 @@
 
 *{
     font-family: 'Londrina Solid', cursive;
-    font-size: x-large;
+    font-size: xx-large;
 }
 
 body{
-    background-color: #F5F5DC;
+    background-color: #fff2c4;
 }
 
 main{
@@ -23,12 +23,17 @@ main{
     height: 50px;
 }
 
+#admin input{
+    border: none;
+    padding: 15px;
+}
+
 .add-button{
     background-color: black;
 }
 
 .del-button{
-    background-color: red;
+    background-color: rgb(255, 35, 35);
 }
 
 #my-syllabes{
