@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <section>
+            <h1>Mes syllabes &#127774</h1>
+            <div id="my-syllabes"></div>
+        </section>
+        <section>
+            <h3>Ajouter une syllabe</h3>
+            <form id="contactForm" action="index.html" method="GET">
+                <div class="field">
+                <input type="text" name="name" id="name" placeholder="Entrez une syllabe ici ..." required>
+                </div>
+                <div class="field">
+                    <button type="submit">
+                        <i class="fa-solid fa-plus"></i> Ajouter
+                    </button>
+                </div>
+            </form>  
+        </section>
+        <br>
+        <section>
+            <button onclick="deleteAll()"><i class="fa-solid fa-trash"></i> Supprimer tout</button>
+        </section>
+    </main>
+    
+    <script>
+        try {
+            const wakeLock = navigator.wakeLock.request("screen");
+            console.log(`wake lock`);
+        } catch (err) {
+        // the wake lock request fails - usually system related, such being low on battery
+            console.log(`${err.name}, ${err.message}`);
+        }
+        if (localStorage) {
+        // LocalStorage is supported!
+
+            if(localStorage.length == 0){
+                document.getElementById('my-syllabes').innerHTML = "Pas encore de syllabes &#128586;"
+            }
+            
+            document.getElementById('contactForm').addEventListener('submit', function() {
+                // Get the value of the name field.
+                var name = document.getElementById('name').value
+
+                // Save the name in localStorage.
+                localStorage.setItem(`item${localStorage.length}`,name)
+            })
+            for (var i = 0; i < localStorage.length; i++) {
+                document.getElementById('my-syllabes').innerHTML += `<button class="consonnance" onclick="readContent(this)">${localStorage.getItem(localStorage.key(i))}</button>`
+            }
+            
+            function readContent(e){
+                const message = new SpeechSynthesisUtterance()
+
+                // set the text to be spoken
+                message.text = e.innerText
+
+                // create an instance of the speech synthesis object
+                const speechSynthesis = window.speechSynthesis
+
+                // start speaking
+                speechSynthesis.speak(message)
+            }
+
+            function deleteAll(){
+                localStorage.clear()
+                document.getElementById('my-syllabes').innerHTML = "Pas encore de syllabes &#128586;"
+            }
+        } else {
+            console.log("not support")
+        // No support. Use a fallback such as browser cookies or store on the server.
+        }
+    </script>
+</body>
+</html>
