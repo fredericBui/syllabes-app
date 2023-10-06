@@ -10,7 +10,7 @@
 <body>
     <main>
         <section>
-            <h1>Mes syllabes &#127774</h1>
+            <h1 style="text-align: center;color:grey;">Appuie sur une syllabe pour entendre le son.</h1>
             <div id="my-syllabes"></div>
         </section>
         <section>
@@ -54,10 +54,21 @@
                 // Save the name in localStorage.
                 localStorage.setItem(`item${localStorage.length}`,name)
             })
-            for (var i = 0; i < localStorage.length; i++) {
-                document.getElementById('my-syllabes').innerHTML += `<button class="consonnance" onclick="readContent(this)">${localStorage.getItem(localStorage.key(i))}</button>`
+
+            function getRandomInt(max) {
+                return Math.floor(Math.random() * max);
             }
-            
+
+            palette = ['#FF37D3', '#E67E1D', '#B44BE6', '#4FC2F4', '#58E64B', '#F44F59']
+
+            for (var i = 0; i < localStorage.length; i++) {
+                document.getElementById('my-syllabes').innerHTML += `<button class="syllabes" onclick="readContent(this)" style="background-color:${palette[getRandomInt(palette.length)]}">${localStorage.getItem(localStorage.key(i))}</button>`
+            }
+
+
+
+
+
             function readContent(e){
                 const message = new SpeechSynthesisUtterance()
 
