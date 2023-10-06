@@ -11,24 +11,20 @@
     <main>
         <section>
             <h1 style="text-align: center;color:grey;">Appuie sur une syllabe pour entendre le son.</h1>
-            <div id="my-syllabes"></div>
+            <div id="my-syllabes" style="text-align: center;"></div>
         </section>
-        <section>
-            <h3>Ajouter une syllabe</h3>
+        <section id="admin">
             <form id="contactForm" action="index.html" method="GET">
                 <div class="field">
                 <input type="text" name="name" id="name" placeholder="Entrez une syllabe ici ..." required>
                 </div>
                 <div class="field">
-                    <button type="submit">
-                        <i class="fa-solid fa-plus"></i> Ajouter
+                    <button class="add-button" type="submit">
+                        <i class="fa-solid fa-plus"></i> Ajouter une syllabe
                     </button>
                 </div>
-            </form>  
-        </section>
-        <br>
-        <section>
-            <button onclick="deleteAll()"><i class="fa-solid fa-trash"></i> Supprimer tout</button>
+            </form>
+            <button class="del-button" onclick="deleteAll()"><i class="fa-solid fa-trash"></i> Supprimer tout</button>
         </section>
     </main>
     
