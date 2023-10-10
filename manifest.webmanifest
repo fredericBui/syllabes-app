@@ -1,0 +1,19 @@
+{
+    "name": "Syllabe-app",
+    "short_name": "Syllabeapp",
+    "start_url": "./?utm_source=web_app_manifest",
+    "display": "standalone",
+    "icons": [
+      {
+        "src": "images/touch/48.png",
+        "sizes": "48x48",
+        "type": "image/png"
+      },
+      {
+        "src": "images/touch/72.png",
+        "sizes": "72x72",
+        "type": "image/png"
+      }
+    ]
+  }
+  
