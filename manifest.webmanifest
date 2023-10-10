@@ -4,13 +4,13 @@
     "display": "fullscreen",
     "icons": [
       {
-        "src": "icon/72.png",
+        "src": "icon/192.png",
         "sizes": "192x192",
         "type": "image/png"
       }
     ],
     "name": "Syllabes App",
-    "short_name": "Sy",
+    "short_name": "Syllabes",
     "start_url": "/index.html"
   }
   
