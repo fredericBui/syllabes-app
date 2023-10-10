@@ -1,19 +1,16 @@
 {
-    "name": "Syllabe-app",
-    "short_name": "Syllabeapp",
-    "start_url": "./?utm_source=web_app_manifest",
-    "display": "standalone",
+    "background_color": "white",
+    "description": "Application pour apprendre les syllabes.",
+    "display": "fullscreen",
     "icons": [
       {
-        "src": "images/touch/48.png",
-        "sizes": "48x48",
-        "type": "image/png"
-      },
-      {
-        "src": "images/touch/72.png",
-        "sizes": "72x72",
+        "src": "icon/72.png",
+        "sizes": "192x192",
         "type": "image/png"
       }
-    ]
+    ],
+    "name": "Syllabes App",
+    "short_name": "Sy",
+    "start_url": "/index.html"
   }
   
