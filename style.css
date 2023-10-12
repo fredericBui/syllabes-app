@@ -39,6 +39,10 @@ main{
     background-color: rgb(255, 35, 35);
 }
 
+.super-del-button{
+    display: none;
+}
+
 #my-syllabes{
     --w:100px;
     --n:4;

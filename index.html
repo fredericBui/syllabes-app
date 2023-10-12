@@ -26,6 +26,7 @@
                 </div>
             </form>
             <button class="del-button" onclick="showDeleteButton()"><i class="fa-solid fa-trash"></i> Supprimer</button>
+            <button id="super-del-button" class="del-button" onclick="clearLocalStorage()" style="display: none;"><i class="fa-solid fa-bomb"></i> Supprimer tout</button>
         </section>
     </main>
     
@@ -51,7 +52,7 @@
             checkLocalStorage()
 
             function getRandomInt(max) {
-                return Math.floor(Math.random() * max);
+                return Math.floor(Math.random() * max)
             } 
 
             function displayLocalStorage(){
@@ -84,10 +85,17 @@
             }
 
             function showDeleteButton(){
-                const delButton = document.querySelectorAll('.delete-syllabe');
+                const delButton = document.querySelectorAll('.delete-syllabe')
                 delButton.forEach(element => {
-                    element.style.display = 'block';
-                });
+                    element.style.display = 'block'
+                })
+                document.getElementById('super-del-button').style.display= "block"
+            }
+
+            function clearLocalStorage(){
+                localStorage.clear()
+                checkLocalStorage()
+                document.getElementById('super-del-button').style.display= "none"
             }
 
         } else {
