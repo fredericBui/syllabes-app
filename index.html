@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Syllabe App</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="/manifest.webmanifest" />
@@ -25,64 +25,71 @@
                     </button>
                 </div>
             </form>
-            <button class="del-button" onclick="deleteAll()"><i class="fa-solid fa-trash"></i> Supprimer tout</button>
+            <button class="del-button" onclick="showDeleteButton()"><i class="fa-solid fa-trash"></i> Supprimer</button>
         </section>
     </main>
     
     <script>
-        try {
-            const wakeLock = navigator.wakeLock.request("screen");
-            console.log(`wake lock`);
-        } catch (err) {
-        // the wake lock request fails - usually system related, such being low on battery
-            console.log(`${err.name}, ${err.message}`);
-        }
         if (localStorage) {
         // LocalStorage is supported!
 
-            if(localStorage.length == 0){
-                document.getElementById('my-syllabes').innerHTML = "Pas encore de syllabes &#128586;"
+            palette = ['#FF37D3', '#E67E1D', '#B44BE6', '#4FC2F4', '#58E64B', '#F44F59']
+
+            document.getElementById('contactForm').addEventListener('submit', setLocalStorageItem)
+
+            function setLocalStorageItem(){
+                var name = document.getElementById('name').value
+                localStorage.setItem(`item${localStorage.length}`,name)
+            }
+
+            function checkLocalStorage(){
+                if(localStorage.length == 0){
+                    document.getElementById('my-syllabes').innerHTML = "<p>Pas encore de syllabes &#128586;</p>"
+                }
             }
             
-            document.getElementById('contactForm').addEventListener('submit', function() {
-                // Get the value of the name field.
-                var name = document.getElementById('name').value
-
-                // Save the name in localStorage.
-                localStorage.setItem(`item${localStorage.length}`,name)
-            })
+            checkLocalStorage()
 
             function getRandomInt(max) {
                 return Math.floor(Math.random() * max);
+            } 
+
+            function displayLocalStorage(){
+                for (var i = 0; i < localStorage.length; i++) {
+                    document.getElementById('my-syllabes').innerHTML += 
+                    `<div class='syllabe-block'>
+                        <button class="syllabes" onclick="readContent(this)" style="background-color:${palette[getRandomInt(palette.length)]}">
+                            ${localStorage.getItem(localStorage.key(i))}
+                        </button>
+                        <button id=${localStorage.key(i)} class="delete-syllabe" onclick="removeLocaleStorageItem(this)">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>`
+                }
             }
+            
+            displayLocalStorage()
 
-            palette = ['#FF37D3', '#E67E1D', '#B44BE6', '#4FC2F4', '#58E64B', '#F44F59']
-
-            for (var i = 0; i < localStorage.length; i++) {
-                document.getElementById('my-syllabes').innerHTML += `<button class="syllabes" onclick="readContent(this)" style="background-color:${palette[getRandomInt(palette.length)]}">${localStorage.getItem(localStorage.key(i))}</button>`
+            function removeLocaleStorageItem(e){
+                localStorage.removeItem(e.id)
+                e.parentElement.remove()
+                checkLocalStorage()
             }
-
-
-
-
 
             function readContent(e){
                 const message = new SpeechSynthesisUtterance()
-
-                // set the text to be spoken
                 message.text = e.innerText
-
-                // create an instance of the speech synthesis object
                 const speechSynthesis = window.speechSynthesis
-
-                // start speaking
                 speechSynthesis.speak(message)
             }
 
-            function deleteAll(){
-                localStorage.clear()
-                document.getElementById('my-syllabes').innerHTML = "Pas encore de syllabes &#128586;"
+            function showDeleteButton(){
+                const delButton = document.querySelectorAll('.delete-syllabe');
+                delButton.forEach(element => {
+                    element.style.display = 'block';
+                });
             }
+
         } else {
             console.log("not support")
         // No support. Use a fallback such as browser cookies or store on the server.

@@ -2,6 +2,9 @@
 
 *{
     font-family: 'Londrina Solid', cursive;
+}
+
+p, h1, input, .syllabes, .add-button, .del-button {
     font-size: xx-large;
 }
 
@@ -53,5 +56,21 @@ button{
 
 .syllabes{
     height:100px;
+    width: 100%;
     align-items: center;
+}
+
+.syllabe-block{
+    position: relative;
+}
+
+.delete-syllabe{
+    position: absolute;
+    background-color:  rgb(255, 35, 35);
+    right: -6px;
+    top: -6px;
+    border-radius: 2em;
+    padding: 5px 10px;
+    font-size: x-large;
+    display: none;
 }
