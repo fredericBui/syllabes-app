@@ -27,7 +27,7 @@
             </form>
             <button class="del-button" onclick="showDeleteButton()"><i class="fa-solid fa-trash"></i> Supprimer</button>
             <button id="super-del-button" class="del-button" onclick="clearLocalStorage()" style="display: none;"><i class="fa-solid fa-bomb"></i> Supprimer tout</button>
-        </section>
+        </section>       
     </main>
     
     <script>
@@ -79,9 +79,24 @@
 
             function readContent(e){
                 const message = new SpeechSynthesisUtterance()
-                message.text = e.innerText
-                const speechSynthesis = window.speechSynthesis
-                speechSynthesis.speak(message)
+                switch (e.innerText) {
+                    case 'AN':
+                        var audio = new Audio('records/an.m4a');
+                        audio.play();
+                        break;
+                    case 'IN':
+                        var audio = new Audio('records/in.m4a');
+                        audio.play();
+                        break;
+                    case 'OI':
+                        var audio = new Audio('records/oi.m4a');
+                        audio.play();
+                        break;
+                    default:
+                        message.text = e.innerText
+                        const speechSynthesis = window.speechSynthesis
+                        speechSynthesis.speak(message)
+                }
             }
 
             function showDeleteButton(){
@@ -97,7 +112,6 @@
                 checkLocalStorage()
                 document.getElementById('super-del-button').style.display= "none"
             }
-
         } else {
             console.log("not support")
         // No support. Use a fallback such as browser cookies or store on the server.
