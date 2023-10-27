@@ -1,80 +1,94 @@
 @import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&display=swap');
 
-*{
-    font-family: 'Londrina Solid', cursive;
+* {
+  font-family: 'Londrina Solid', cursive;
 }
 
-p, h1, input, .syllabes, .add-button, .del-button {
-    font-size: xx-large;
+p,
+h1,
+input,
+.syllabes,
+.add-button,
+.del-button {
+  font-size: xx-large;
 }
 
-body{
-    background-color: #fff2c4;
+body {
+  background-color: #fff2c4;
 }
 
-main{
-    width: 90%;
-    margin: auto;
+main {
+  width: 90%;
+  margin: auto;
 }
 
-#admin button, #admin input{
-    width: 90%;
-    display: flex;
-    margin: 10px auto;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
+#admin button,
+#admin input {
+  width: 90%;
+  display: flex;
+  margin: 10px auto;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
 }
 
-#admin input{
-    border: none;
-    padding: 15px;
+#admin input {
+  border: none;
+  padding: 15px;
 }
 
-.add-button{
-    background-color: black;
+.add-button {
+  background-color: black;
 }
 
-.del-button{
-    background-color: rgb(255, 35, 35);
+.del-button {
+  background-color: rgb(255, 35, 35);
 }
 
-.super-del-button{
-    display: none;
+.super-del-button {
+  display: none;
 }
 
-#my-syllabes{
-    --w:100px;
-    --n:4;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(clamp(100%/(var(--n) + 1) + 0.1%,var(--w),100%),1fr)); /*this */
-    gap:10px;
+#my-syllabes {
+  --w: 100px;
+  --n: 4;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(clamp(100%/ (var(--n) + 1) + 0.1%, var(--w), 100%), 1fr)
+  ); /*this */
+  gap: 10px;
 }
 
-button{
-    border-radius: 15px;
-    border-style: none;
-    text-transform: uppercase;
-    color: white;
+button {
+  border-radius: 15px;
+  border-style: none;
+  text-transform: uppercase;
+  color: white;
 }
 
-.syllabes{
-    height:100px;
-    width: 100%;
-    align-items: center;
+.syllabes {
+  height: 100px;
+  width: 100%;
+  align-items: center;
+  transition: all 0.1s ease-in-out;
 }
 
-.syllabe-block{
-    position: relative;
+.syllabes:active {
+  transform: scale(1.1);
 }
 
-.delete-syllabe{
-    position: absolute;
-    background-color:  rgb(255, 35, 35);
-    right: -6px;
-    top: -6px;
-    border-radius: 2em;
-    padding: 5px 10px;
-    font-size: x-large;
-    display: none;
+.syllabe-block {
+  position: relative;
+}
+
+.delete-syllabe {
+  position: absolute;
+  background-color: rgb(255, 35, 35);
+  right: -6px;
+  top: -6px;
+  border-radius: 2em;
+  padding: 5px 10px;
+  font-size: x-large;
+  display: none;
 }
